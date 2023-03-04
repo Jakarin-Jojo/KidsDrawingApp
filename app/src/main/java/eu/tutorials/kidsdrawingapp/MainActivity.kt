@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawingView = findViewById(R.id.drawingView)
+        drawingView?.setSizeForBrush(20.toFloat())
 
     }
 }
