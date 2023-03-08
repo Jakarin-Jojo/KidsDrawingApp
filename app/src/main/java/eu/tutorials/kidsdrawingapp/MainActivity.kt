@@ -3,6 +3,9 @@ package eu.tutorials.kidsdrawingapp
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -132,6 +135,20 @@ class MainActivity : AppCompatActivity() {
             requestPermission.launch(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE))
             // TODO - Add writing external storage permission
         }
+    }
+
+    private fun getBitMapFromView(view:View): Bitmap{
+        val returnBitmap = Bitmap.createBitmap(view.width, view.height,
+            Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(returnBitmap)
+        val bgDrawable = view.background
+        if(bgDrawable!=null){
+            bgDrawable.draw(canvas)
+        }else{
+            canvas.drawColor(Color.WHITE)
+        }
+        view.draw(canvas)
+        return returnBitmap
     }
 
     private fun showRationalDialog(
